@@ -1,17 +1,27 @@
 import random
-import numpy as np
+import matplotlib as lib
+import matplotlib.pyplot as plot
 
-heads = int(0)
-tails = int(0)
-flipCount = int(1000)
-while (flipCount > 0):
-    flip = random.randint(0,1)
-    if flip == 0:
-        flipWord = "heads"
-        heads += 1
+moneta = []
+
+for i in range(1, 1001):
+    rand = random.randint(1, 100)
+    if (rand >= 30):
+        moneta.append(0)
     else:
-        flipWord = "tails"
-        tails+=1
-    print ("I flipped a coin and got ",flipWord,".")
-    flipCount -= 1
-print(tails,heads)
+        moneta.append(1)
+
+labels = ['Reshka', 'Orel']
+values = [0] * 2
+
+for i in range(len(moneta)):
+    if (moneta[i] == 0):
+        values[0] += 1
+    else:
+        values[1] += 1
+
+figure1, ax1 = plot.subplots()
+ax1.pie(values, labels = labels,
+        autopct = '%1.1f%%', startangle = 90)
+ax1.axis('equal')
+plot.show()
