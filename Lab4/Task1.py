@@ -4,7 +4,7 @@ import matplotlib.pyplot as plot
 
 moneta = []
 
-for i in range(1, 1001):
+for i in range(1, 100):
     rand = random.randint(1, 100)
     if (rand >= 30):
         moneta.append(0)

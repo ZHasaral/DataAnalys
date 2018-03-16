@@ -1,7 +1,8 @@
+#Необходимо вывести  все точные квадраты натуральных чисел, не превосходящие данного числа N.
 N = int(input())
 
-sqrtN = N**0.5
-i = 1
-while i <= sqrtN:
-    print(i*i)
-    i += 1
+for i in range(1,N):
+    n = i ** 2
+    if (n > N):
+        break
+    print(n)

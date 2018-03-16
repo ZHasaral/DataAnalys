@@ -1,3 +1,5 @@
 import numpy as np
-mass = np.random.random((3,3,3))
-print(mass)
+
+b = np.random.randint(10, size=(3,3,3))
+
+print(b)

@@ -1,5 +1,7 @@
 import numpy as np
-N = int(input())
+N = 4
 mass = np.ones((N,N))
-mass[1:-1,1:-1] = 0
+mass[:1,:1] = 0
 print(mass)
+
+
