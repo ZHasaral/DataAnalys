@@ -1,56 +1,40 @@
-import numpy as np
-import matplotlib as mpl
 import matplotlib.pyplot as plt
-mass = []
-for i in range(int(input())):
-    mass.append(np.random.randint(-5,10))
-print(mass)
-print(mass)
+import numpy as np
+from scipy import stats
+import matplotlib.patches as mpatches
 
-hits = []
-for item in mass:
-    tally = mass.count(item)
-    values = (tally, item)
-    if values not in hits:
-        hits.append(values)
-hits.sort(reverse=True)
-if hits[0][0]>hits[1][0]:
-    print("\n\nThe mode is:", hits[0][1], "hit appeared", hits[0][0], "times.")
-else:
-    print("There is not a mode")
 
-def avg(list):
-    sum = float(0)
-    for i in range(len(list)):
-        sum+=list[i]
-    print(sum/len(list))
+N = 1000
+M = 40
+lst=np.random.randn(N)
+print("\nRaw data:", lst)
+lst.sort()
+print("Sorted data:", lst)
 
-avg(mass)
-
-def median(list):
-    n = len(list)
-    if n % 2 == 1:
-            print(sorted(list)[n//2])
+def get_median(list):
+    median_pos = (len(list)+1)/2
+    if median_pos == int(median_pos):
+        median_pos = int(median_pos-1)
+        return list[median_pos]
     else:
-            print(sum(sorted(list)[n//2-1:n//2+1])/2.0)
+        med_avg = []
+        med_avg.append(list[int(median_pos-1.5)])
+        med_avg.append(list[int(median_pos-.5)])
+        return get_mean(med_avg)
 
-median(mass)
+def get_mean(list):
+    return float(sum(list)/len(list))
+print(stats.mode(lst))
+mode = stats.mode(lst)
+print(get_mean(lst))
+print(get_median(lst))
+print(mode.mode[0])
+fig, ax = plt.subplots(1)
 
-dpi = 100
-fig = plt.figure(dpi = dpi, figsize = (600 / dpi, 400 / dpi) )
-fig = plt.figure(median(list))
-mpl.rcParams.update({'font.size': 10})
+count, bins, ignored = plt.hist(lst, M, normed=True)
+plt.axvline(get_mean(lst), label='Mean', color='g', linestyle='--', linewidth=2)
+plt.axvline(get_median(lst), label='Median',color='r', linestyle='-', linewidth=1)
+plt.axvline(mode.mode[0], label='Mode', color='y', linestyle='-', linewidth=2)
 
-plt.title('hello, my friend. how do you do?')
-
-ax = plt.axes()
-
-xs = range(len(mass))
-plt.bar([x + 0.0 for x in xs],  mass,
-          color = 'blue', alpha = 0.8,
-         zorder = 0)
-plt.xticks(xs, mass, rotation =10)
+plt.legend(loc='upper right')
 plt.show()
-    
-      
-      
