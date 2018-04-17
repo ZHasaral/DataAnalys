@@ -41,9 +41,9 @@ print(get_median(b))
 
 
 count, bins, ignored = plt.hist(lst, M, normed=True)
-plt.axvline(get_median(a), label='Quartile 1', color='r', linestyle='--', linewidth=2)
-plt.axvline(get_median(lst), label='Quartile 2',color='y', linestyle='-', linewidth=2)
-plt.axvline(get_median(b), label='Quartile 3', color='g', linestyle='--', linewidth=2)
+plt.axvline(get_median(a), label='Quartile 1', color='r', linestyle='-', linewidth=2)
+plt.axvline(get_median(lst), label='Quartile 2',color='g', linestyle='-', linewidth=2)
+plt.axvline(get_median(b), label='Quartile 3', color='y', linestyle='-', linewidth=2)
 
 
 plt.legend(loc='upper right')
